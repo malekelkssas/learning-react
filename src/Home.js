@@ -1,34 +1,30 @@
 import { useState } from "react"; // this library is to make a vriable reactive => change in browser whenever change in react
 
 const Home = () => {
-// function without arguments is easy to be use (the argument here is event object)
-    const handleclick = (event) =>
-    {
-        console.log('hi there',event);
-    }
 
-    //now function with arguments
-    const handleclickagain = (name,event) =>
-    {
-        console.log('hi there',name , event.target);
-    }
+    const [blogs , setBlogs] = useState(
+        [
+            { title: 'My new website', body: 'lorem ipsum...', author: 'mario', id: 1 },
+            { title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2 },
+            { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
+        ]
+    );
+    //list of objects
 
-    const [name, setName] = useState('malek'); //this how we make a value reactive [value , set function]
-    const changeName = () =>{
-        let tmp = Math.random()*5;
-        let tmp2 = ['malek','mohamed','nour','eldean','elkassas']
-        setName(tmp2[parseInt(tmp)]);
-    }
-
+    /**we must here in the div have a key property to be able to keep aabtract with each object or item 
+     * and the id must be unique
+     * 
+    */
     return ( 
         <div className="home">
-            <h2>Homepage</h2>
-            <button onClick={handleclick}>click me</button>
-            <button onClick={(event) =>{
-                handleclickagain('malek',event);
-            }}>click me</button>
-            <p> { name } </p>
-            <button onClick={changeName}>change the name</button>
+            {
+            blogs.map((item) =>(
+                    <div className="blog-preview" key={item.id}>
+                        <h2>{ item.title } </h2>
+                        <p>{ item.body } </p>
+                    </div>
+                ) )
+            }
         </div>
      );
 }

@@ -38,7 +38,19 @@
 .content{
   max-width: 600px;
   /* margin:0 0 0 500px; */
-  margin: 0 0 0 20px;
+  margin: 20px auto;
   width: auto;
   padding: 20px;
+}
+
+.blog-preview{
+  padding: 10px;
+  margin: 20px 0;
+  border-bottom: 1px solid black;
+}
+
+.blog-preview h2{
+  font-size: 20px;
+  color: palevioletred;
+  margin-bottom: 10px;
 }
