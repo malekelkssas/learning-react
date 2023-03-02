@@ -6,7 +6,11 @@ import BlogList from "./BlogList";
  */
 
 const Home = () => {
-
+    
+    const deleteBlog = (id) =>{
+        let tmp = blogs.filter(element => element.id !== id);
+        setBlogs(tmp);
+    };
     const [blogs , setBlogs] = useState(
         [
             { title: 'My new website', body: 'lorem ipsum...', author: 'mario', id: 1 },
@@ -17,8 +21,7 @@ const Home = () => {
 
     return ( 
         <div className="home">
-            <BlogList blogs={blogs} title = "all blogs"/>
-            <BlogList blogs={blogs.filter((element)=> element.author=='mario')} title = "mario"/>
+            <BlogList blogs={blogs} title = "all blogs" deleteBlog = {deleteBlog} />
         </div>
      );
 }

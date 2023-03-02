@@ -3,7 +3,7 @@ const Navbar = () => {
     return ( 
         <nav className="navbar">
             <h1>Welcome</h1>
-            <div>
+            <div className="links">
                 <a href="/">Home</a>
                 <a href="/create" style={{
                     color:'beige',
