@@ -1,10 +1,9 @@
 import { useState } from "react"; // this library is to make a vriable reactive => change in browser whenever change in react
 import BlogList from "./BlogList";
 
-/* if there is a prop can repeat i will do the following putting it in new js file =>i think i will do the some as the 
-    the relation between index.js and the App.js with the remaining files 
-    and we will pass parameters using prop => prop is a way to pass parameters between components (from parent one to child)
-*/
+/**
+ * here i will reuse the compnents with filters
+ */
 
 const Home = () => {
 
@@ -19,6 +18,7 @@ const Home = () => {
     return ( 
         <div className="home">
             <BlogList blogs={blogs} title = "all blogs"/>
+            <BlogList blogs={blogs.filter((element)=> element.author=='mario')} title = "mario"/>
         </div>
      );
 }

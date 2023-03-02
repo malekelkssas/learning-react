@@ -1,0 +1,4 @@
+npx create-react-app (project name)  => create react app
+npm install => look at the dependicies and libraries and modules inside package.json and install it
+
+npm run (server name) => run react app
