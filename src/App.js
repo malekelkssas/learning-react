@@ -12,7 +12,7 @@ function App() {
       <Navbar />
       <div className="content">
         <h1>{title}</h1>
-        
+        <Home />
         {/* <br />
         <h2>Component</h2>
         <p>Liked {likes} times</p>
