@@ -1,12 +1,9 @@
-import { useState ,useEffect } from "react"; // now we will use effect
+import { useState ,useEffect } from "react"; 
 import BlogList from "./BlogList";
 
 /**
- * usestate is something called hook
- * there is another hooks
- * now we will use useeffect => it run function everytime we render the element
- *                              and this happen every time you refresh or first load
- *                              and when state (useState) changes
+ * we can use useEffect to fetch data from database and api =>
+ *  here we will use Json as fake api and database data
  */
 
 const Home = () => {
@@ -16,31 +13,24 @@ const Home = () => {
         setBlogs(tmp);
     };
 
-    const [blogs , setBlogs] = useState(
-        [
-            { title: 'My new website', body: 'lorem ipsum...', author: 'mario', id: 1 },
-            { title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2 },
-            { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
-        ]
-    );
-        const [name,setNAme] = useState("malek");
+    const [blogs , setBlogs] = useState(null);
         useEffect(()=>{
-            // take care of changing state inside this
-            console.log("hi malek");
-            console.log(name);
-            // as the page can be re-render many times
-            // and i may don't need this function to run
-            // every tim i will somthing called dependecy array
-            // we pass it as arguments => sothat it runs just after 
-            // the first render (if it is empty)
-            // or i can put a dependency 
-        },[name]);
+            // now we will fetch data => (we can't async here (use await))
+            // instead we use (.then()) method
+            fetch('http://localhost:8000/blogs').then(res => {
+                return res.json();
+            }).then( data => {
+                setBlogs(data);
+                // console.log(data);
+            })
+            ; // this is a get request 
+        },[]);
 
     return ( 
         <div className="home">
-            <BlogList blogs={blogs} title = "all blogs" deleteBlog = {deleteBlog} />
-            <button onClick={()=>setNAme("mo")}>change</button>
-            <p>{name}</p>
+            {blogs && <BlogList blogs={blogs} title = "all blogs" deleteBlog = {deleteBlog} />} {/**this is to check if blogs is null or not */}
+           
+
         </div>
      );
 }
