@@ -2,8 +2,9 @@ import { useState ,useEffect } from "react";
 import BlogList from "./BlogList";
 
 /**
- * we can use useEffect to fetch data from database and api =>
- *  here we will use Json as fake api and database data
+ * as featching data from server may take sometime (not like json file here)
+ * we will use conditions again to make
+ * conditional messege
  */
 
 const Home = () => {
@@ -15,22 +16,24 @@ const Home = () => {
 
     const [blogs , setBlogs] = useState(null);
         useEffect(()=>{
-            // now we will fetch data => (we can't async here (use await))
-            // instead we use (.then()) method
-            fetch('http://localhost:8000/blogs').then(res => {
+            // i will use settimeout to act like a server
+            setTimeout(() => {
+               fetch('http://localhost:8000/blogs').then(res => {
                 return res.json();
-            }).then( data => {
+            }).then( data =>{
                 setBlogs(data);
-                // console.log(data);
-            })
-            ; // this is a get request 
+                setIsPending(false);
+            }); 
+            }, 1000);
+            
         },[]);
+
+    const [isPending,setIsPending] = useState(true);
 
     return ( 
         <div className="home">
+            {isPending && <div>Loading...</div>}
             {blogs && <BlogList blogs={blogs} title = "all blogs" deleteBlog = {deleteBlog} />} {/**this is to check if blogs is null or not */}
-           
-
         </div>
      );
 }
