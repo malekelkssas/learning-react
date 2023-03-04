@@ -19,6 +19,9 @@
   border-bottom:1px solid black;
 }
 
+.navbar h1 {
+  color: #f1356d;
+}
 .navbar .links{
   margin-left: auto;
 }
@@ -49,6 +52,10 @@
   padding: 10px;
   margin: 20px 0;
   border-bottom: 1px solid black;
+}
+
+.blog-preview:hover {
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
 }
 
 .blog-preview h2{
