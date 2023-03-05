@@ -1,17 +1,33 @@
-
-
 import Navbar from './Navbar';
 import Home from './Home';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+// I will learn routs using react
+/**
+ * 1-first we suround our entiry application with Router
+ * 2- make Switch to each page (where is the new content will be
+ *  put ) => in this example it will be put after the div of className = content
+ *  it also ensure that only one route show in one time
+ * 3-set our routes for each page
+ * *notice that the Navbar always in show because it is not in the switch
+ */
 
 function App() {
   return (
-    <div className="App">
+    <Router>
+      <div className="App">
       <Navbar />
       <div className="content">
-        <Home />
-
+        <Switch>
+          <Route path="/">
+            <Home />
+            {/* in the path we put the page name (location)(route name) */}
+          </Route>
+        </Switch>
+    
       </div>
     </div>
+    </Router>
   );
 }
 
