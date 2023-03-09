@@ -3,15 +3,16 @@ import { useEffect,useState } from "react";
 const useFetch = (url) => {
     
     
-    
     const [data ,  setData] = useState(null);
     const [isPending,setIsPending] = useState(true);
     const [error,setError] = useState(null);
-
+    
     useEffect(()=>{
+        // i will use cleanup function to prevent the crushes in quick page switching 
+        const abortCont = new AbortController(); //we will use this to stop fetch
+        const signal = abortCont.signal;
             setTimeout(() => {
-            fetch(url).then(res => {
-                console.log(res);
+            fetch(url, {signal}).then(res => {
                 if(!res.ok)
                 {
                     throw Error('coudn not fetch the data from the server :(')
@@ -22,13 +23,23 @@ const useFetch = (url) => {
                 setIsPending(false);
                 setError(null);
             }).catch((err)=>{
+                if(err.name ==='AbortError')
+                {
+                    console.log("signal.aborted err");
+
+                }
+                else{
                 setError(err.message);
                 setIsPending(false);
+                }
             }); 
             }, 1000);
+
+            //cleanup function
+            return () => abortCont.abort();
             
-        },[url]); // we add this dependency as we want to fetch the data every time the url changes
-        return {data,isPending,error}; //it is logical to return the states & we can use array instead of objects
+        },[url]); 
+        return {data,isPending,error};
 };
 
 export default useFetch;
