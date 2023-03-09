@@ -1,7 +1,7 @@
 import Navbar from './Navbar';
 import Home from './Home';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
+import Create from './Create';
 // I will learn routs using react
 /**
  * 1-first we suround our entiry application with Router
@@ -19,10 +19,12 @@ function App() {
       <Navbar />
       <div className="content">
         <Switch>
-          <Route path="/">
-            <Home />
-            {/* in the path we put the page name (location)(route name) */}
-          </Route>
+          <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/Create">
+              <Create />
+            </Route>
         </Switch>
     
       </div>
