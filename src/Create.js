@@ -3,22 +3,26 @@ import { useState } from "react";
 
 const Create = () => {
 
-    // we will keep track with the values
     const [title,setTitle] = useState('');
     const [body,setBody] = useState('');
     const [author,setAuthor] = useState('mario');
+
+    const handleSubmit = e =>{
+        e.preventDefault(); // it prevent data from loss
+        const blog = {title,body,author};
+        console.log(blog);
+    }
 
     return ( 
         <div className="create">
             <h2>
                 add a new page
             </h2>
-            <form action="">
+            <form onSubmit={handleSubmit}>
                 <label> Blog title:</label>
                 <input 
                     type="text"
                     required
-                    // adding values
                     value={title}
                     onChange = {(e) => setTitle(e.target.value)}
                 />
