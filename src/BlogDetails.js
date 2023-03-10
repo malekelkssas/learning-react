@@ -1,13 +1,25 @@
-import { useParams } from "react-router-dom"; //this is a new hook
+import { useParams } from "react-router-dom"; 
+import useFetch from "./useFetch";
+
+//now i will use useFetch again
 
 const BlogDetails = () => {
-    // now i will fetch the id in url
     const {id} = useParams();
+    const {data,isPending,error} = useFetch('http://localhost:8000/blogs/' + id);
+    //important => this id in the previous line which make the data fetched correctly
+
     return ( 
 <div className="blog-details">
-    <h2>
-        Blog Details  {id}
-    </h2>
+    {isPending && <div> loading</div>}
+    {error && <div>{ error }</div>}
+    {data && (
+        <article>
+            <h2>{data.title}</h2>
+            <p>Written by {data.author}</p>
+            <div>{data.body}</div>
+            
+        </article>
+    )}
 </div>
 
      );
