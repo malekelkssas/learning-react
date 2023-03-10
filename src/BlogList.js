@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
+
 const BlogList = (props) => {
 
+// i will try ti use id parameters
 
     return ( 
         <div className="blog-list">
@@ -7,9 +10,10 @@ const BlogList = (props) => {
             {
             props.blogs.map((item) =>(
                     <div className="blog-preview" key={item.id}>
+                        <Link to={`/blogs/${item.id}`} style={{textDecoration:'none'}}>
                         <h2>{ item.title } </h2>
                         <p>{ item.body } </p>
-                        <button onClick ={() => props.deleteBlog(item.id)}> delete blog</button>
+                        </Link>
                     </div>
                 ) )
             }

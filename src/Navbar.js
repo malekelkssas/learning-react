@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 
-// making react handling the get request instead of getting it from the server
-// just instead of a => use Link
+// as switching between the routes may case error as react is still featching data
+// and i try to reaqt new update 
+//i will now solve this problem in useFeatch hook
+
 const Navbar = () => {
     return ( 
         <nav className="navbar">
@@ -20,6 +22,3 @@ const Navbar = () => {
  
 export default Navbar;
 
-/*
-* to create function faster use (sfc)
- */

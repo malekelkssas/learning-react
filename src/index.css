@@ -51,7 +51,7 @@
 .blog-preview{
   padding: 10px;
   margin: 20px 0;
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
 }
 
 .blog-preview:hover {
