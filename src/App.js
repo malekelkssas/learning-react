@@ -3,8 +3,8 @@ import Home from './Home';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Create from './create';
 import BlogDetails from './BlogDetails';
+import NotFound from './NotFound';
 
-// how to send parameters with the routes
 
 function App() {
   return (
@@ -20,10 +20,10 @@ function App() {
               <Create />
             </Route>
             <Route path="/blogs/:id"> 
-            {/* :id is a parameter 
-              and as you now blogs will match the nearest one
-            */}
               <BlogDetails />
+            </Route>
+            <Route path="*"> 
+              <NotFound />
             </Route>
         </Switch>
     
