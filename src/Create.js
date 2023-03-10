@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useHistory } from "react-router-dom";  //i will use this hook to redirect
 
 const Create = () => {
 
@@ -7,6 +7,7 @@ const Create = () => {
     const [body,setBody] = useState('');
     const [author,setAuthor] = useState('mario');
     const [isPending,setIsPending] = useState(false);
+    const history = useHistory();
 
     const handleSubmit = e =>{
         e.preventDefault();
@@ -17,7 +18,13 @@ const Create = () => {
             method:'Post',
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(blog)
-        }).then( () => setIsPending(false))
+        }).then( () => {
+            setIsPending(false);
+           // history.go(-1); //go back one step
+           history.push('/'); //forward to the home route
+        });
+
+        
     }
 
     return (
